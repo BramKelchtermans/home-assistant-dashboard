@@ -61,8 +61,11 @@ Follow the official installation guide at [UI Lovelace Minimalist Setup](https:/
 The dashboard is organized into multiple views:
 
 - **🏠 Home** - Welcome screen with weather and person tracking
+
+![Home Dashboard Screenshot](screenshots/home.png)
+
 - **🏡 House** - General house information and vacuum control
-- **��️ Living** - Living room climate, TV, and lighting controls
+- **🛋️ Living** - Living room climate, TV, and lighting controls
 - **�� Kitchen** - Kitchen devices, temperature, and sensors
 - **��️ Bedroom** - Bedroom TV, lighting, and air conditioning
 - **�� Lab** - Computer monitoring, 3D printer, and network status
