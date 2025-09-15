@@ -1,0 +1,117 @@
+---
+card_bram_entities:
+  variables:
+    ulm_card_vertical_button_color: "blue"
+    ulm_card_vertical_button_state: "on"
+  show_label: true
+  label: ""
+  name: |
+    [[[
+      if( entity.entity_id.startsWith("input_select.") )
+        return variables.ulm_card_vertical_button_state;
+      else if( entity.entity_id.startsWith("input_boolean.") )
+        return "";
+      return entity.state;
+    ]]]
+  styles:
+    icon:
+      - color: "rgba(var(--color-theme),0.2)"
+      - width: >-
+          [[[
+            if(variables.logo_width) {
+              return variables.logo_width;
+            }
+            return "30px"
+          ]]]
+    label:
+      - justify-self: "center"
+      - align-self: "start"
+      - font-weight: "bolder"
+      - font-size: "12px"
+      - filter: "opacity(40%)"
+    name:
+      - margin-top: "10px"
+      - justify-self: "center"
+      - font-weight: "bold"
+      - font-size: "14px"
+    img_cell:
+      - background-color: >-
+          [[[
+            if(variables.watch_state) {
+              console.log(entity);
+            }
+            return "rgba(var(--color-theme),0.05)"
+          ]]]
+      - border-radius: "50%"
+      - place-self: "center"
+      - width: "62px"
+      - height: "62px"
+
+    grid:
+      - grid-template-areas: "'i' 'n' 'l'"
+    card:
+      - border-radius: "var(--border-radius)"
+      - box-shadow: "var(--box-shadow)"
+      - padding: "10px 0px 8px 0px"
+    custom_fields:
+      sensor1:
+        - grid-area: "auto"
+        - width: 100%
+  size: "20px"
+  state:
+    - operator: "template"
+      value: |
+        [[[
+          return entity.state == variables.ulm_card_vertical_button_state;
+        ]]]
+      styles:
+        icon:
+          - color: >-
+              [[[
+                if(variables.watch_state && entity.state == "on") {
+                  return 'rgba(' + variables.icon_color + ', 0.6)';
+                }
+                return `rgba(var(--color-${variables.ulm_card_vertical_button_color}), 1)`;
+              ]]]
+        img_cell:
+          - background-color: >-
+              [[[
+                if(variables.watch_state && entity.state == "on") {
+                  return 'rgba(' + variables.icon_color + ', 0.2)';
+                }
+                return `rgba(var(--color-${variables.ulm_card_vertical_button_color}), 0.2)`;
+              ]]]
+  custom_fields:
+    auto: >-
+      [[[
+        let amount = 0;
+        Object.keys(variables).forEach(key => {
+          if(key.includes("entity_")) {
+            amount++;
+          }
+        })
+        let result = '<div style="padding: 10px 15px; justify-content: center; display: flex; margin-top: 10px;">'
+
+        Object.keys(variables).forEach(key => {
+          if(key.includes("entity_")) {
+            let boxShadow = "var(--box-shadow)";
+            if(hass.themes.darkMode) {
+              boxShadow = "0px 2px 4px 0px rgba(0,0,0,0.80)"
+            }
+            result += '<div style="width: ' + Math.round(100/amount) + '%; display: flex; justify-content: center;">'
+            result += '<div style=" box-shadow: ' + boxShadow + '; padding: 20px 15px; border-radius: 25%; margin: 0px 15px;">';
+            result += '<div style="width: 20px; height: 20px; padding: 10px; border-radius: 50%; background-color: rgba(' + variables[key].color + ', 0.4); color: rgba(' + variables[key].color + ', 0.6);">'
+            result += '<ha-icon style="max-width: 20px; max-height: 20px" icon="' + variables[key].icon + '"></ha-icon>';
+            result += '</div>';
+            const label = variables[key].state == 'unavailable' ? '0' : variables[key].state;
+            result += '<p style="margin-top: 7px; margin-bottom: 0px; font-size: 12px;">' + label + variables[key].unit + '</p';
+            result += '</div>';
+            result += '</div>';
+            result += '</div>';
+          }
+        })
+
+
+        result += "</div>";
+        return result;
+      ]]]

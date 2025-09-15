@@ -1,0 +1,107 @@
+---
+### VERTICAL BUTTONS (fka SCENES) ###
+card_button_bram:
+  variables:
+    ulm_card_vertical_button_color: "blue"
+    ulm_card_vertical_button_state: "on"
+    ulm_card_icon_url: ""
+  show_label: true
+  label: ""
+  icon: ""
+  name: |
+    [[[
+      if( entity.entity_id.startsWith("input_select.") )
+        return variables.ulm_card_vertical_button_state;
+      else if( entity.entity_id.startsWith("input_boolean.") )
+        return "";
+      return entity.state;
+    ]]]
+  styles:
+    icon:
+      - display: |
+          [[[
+            if(variables.ulm_card_icon_url) {
+              return "none";
+            }
+          ]]]
+      - color: "rgba(var(--color-theme),0.2)"
+    label:
+      - justify-self: "center"
+      - align-self: "start"
+      - font-weight: "bolder"
+      - font-size: "12px"
+      - filter: "opacity(40%)"
+    name:
+      - margin-top: "10px"
+      - justify-self: "center"
+      - font-weight: "bold"
+      - font-size: "14px"
+    img_cell:
+      - background-image: '[[[ return "url(" + variables.ulm_card_icon_url + ")"; ]]]'
+      - background-size: 'contain'
+      - background-repeat: "no-repeat"
+      - background-position: 'center'
+      - background-color: "rgba(var(--color-theme),0.05)"
+      - border-radius: "50%"
+      - place-self: "center"
+      - width: "42px"
+      - height: "42px"
+      - filter: | 
+          [[[ 
+            if(variables.ulm_card_vertical_button_state == entity.state) {
+              return "";
+            } else {
+              return "grayscale(1)";
+            }
+          ]]] 
+    grid:
+      - grid-template-areas: "'i' 'n' 'l'"
+    card:
+      - background: "color-mix(in srgb, var(--ha-card-background,var(--card-background-color)) 80%, transparent)"
+      - border-radius: "var(--border-radius)"
+      - box-shadow: "var(--box-shadow)"
+      - padding: "10px 0px 8px 0px"
+  size: "20px"
+  state:
+    - operator: "template"
+      value: |
+        [[[
+          return entity.state == variables.ulm_card_vertical_button_state;
+        ]]]
+      styles:
+        icon:
+          - color: "[[[ return variables.ulm_card_vertical_button_color; ]]]"
+        label:
+          - color: "[[[ return variables.ulm_card_vertical_button_color; ]]]"
+        name:
+          - color: "[[[ return variables.ulm_card_vertical_button_color; ]]]"
+        img_cell:
+          - background-color: "[[[ return `${variables.ulm_card_vertical_button_color}14`; ]]]"
+  tap_action:
+    action: "call-service"
+    service: |
+      [[[
+        if( entity.entity_id.startsWith("input_select.") )
+          return "input_select.select_option";
+        if( entity.entity_id.startsWith("input_boolean.") )
+          return "input_boolean.toggle";
+        if( entity.entity_id.startsWith("switch.") )
+          return "switch.toggle";
+        if( entity.entity_id.startsWith("light.") )
+          return "light.toggle";
+        if( entity.entity_id.startsWith("automation.") )
+          return "automation.toggle";
+        if( entity.entity_id.startsWith("input_button.") )
+          return "input_button.press";
+        // If we need to support other entities we can add these options here.
+        return "";
+      ]]]
+    service_data: |
+      [[[
+        var obj;
+        if( entity.entity_id.startsWith("input_select.") )
+          obj = { entity_id: entity.entity_id, option: variables.ulm_card_vertical_button_state };
+        else
+          obj = { entity_id: entity.entity_id };
+        return obj;
+      ]]]

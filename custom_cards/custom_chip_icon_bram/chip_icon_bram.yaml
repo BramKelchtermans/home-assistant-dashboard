@@ -1,0 +1,30 @@
+---
+### Chip Icon Only ###
+chip_icon_bram:
+  template: "chips"
+  label: |
+    [[[
+      var icon = "❔";
+      if (variables.ulm_chip_icon_only){
+        var icon = '<ha-icon id="motion" style="height: 16px; color: ' + variables.ulm_chip_icon_color + '" icon="' + variables.ulm_chip_icon_only + '"></ha-icon>';
+      } else if (variables.custom_svg_icon) {
+        return '<img src="' + variables.custom_svg_icon + '" width="20"/>'
+      }
+      return icon;
+    ]]]
+  styles:
+    label:
+      - display: "flex"
+      - justify-self: "center"
+      - padding: "0px 6px"
+      - font-weight: "bold"
+      - font-size: "14px"
+    card: 
+      - display: >- 
+          [[[ 
+            if(variables.ulm_show_chip) {
+              return "flex";
+            } else {
+              return "none"
+            }
+          ]]]

@@ -1,0 +1,113 @@
+card_computer:
+  type: custom:button-card
+  show_state: false
+  show_label: false
+  show_name: false
+  layout: horizontal
+  triggers_update: >
+    [[[
+      const triggersUpdate = [];
+      if (variables.cpu_sensor) {
+        triggersUpdate.push(variables.cpu_sensor);
+      }
+      if (variables.ram_sensor) {
+        triggersUpdate.push(variables.ram_sensor);
+      }
+      if (variables.disk_sensor) {
+        triggersUpdate.push(variables.disk_sensor);
+      }
+      if(entity.entity_id) {
+        triggersUpdate.push(entity.entity_id);
+      }
+      console.log(triggersUpdate);
+      return triggersUpdate;
+    ]]]
+  show_icon: false
+  styles:
+    card:
+      - height: 160px
+      - padding: 0px
+      - justify-content: start
+      - align-items: start
+    grid:
+      - grid-template-areas: '"image" "restart"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 3fr 1fr
+    custom_fields:
+      power:
+        - padding: 0px 10px 10px 10px
+      restart:
+        - padding: 0px 10px 10px 10px
+      image:
+        - display: flex
+        - align-items: center
+        - border-radius: 20px
+      info:
+        - display: flex
+        - flex-direction: column
+        - padding-left: 10px
+        - gap: 4px
+        - font-size: 12px
+  custom_fields:
+    image: |
+      [[[
+        var info = '<div style="display: flex; flex-direction: column; gap: 4px; justify-content: center; align-items: start; padding-left: 10px;">';
+        var name = `<div style="font-weight: bold; word-wrap: break-word; text-align: left; white-space: pre-wrap; ">${variables.name}</div>`;
+        var style = 'style="font-size: 12px; display: flex; align-items: center; gap: 6px;"';
+        if (variables.cpu_sensor && states[variables.cpu_sensor]) {
+          var cpu = Math.round(states[variables.cpu_sensor].state);
+          info += '<div ' + style + '><ha-icon icon="mdi:cpu-64-bit" style="margin: 0px; width: 16px; height: 16px;"></ha-icon> CPU: ' + cpu + '%</div>';
+        }
+        if (variables.ram_sensor && states[variables.ram_sensor]) {
+          var ram = Math.round(states[variables.ram_sensor].state);
+          info += '<div ' + style + '><ha-icon icon="mdi:memory" style="margin: 0px; width: 16px; height: 16px;"></ha-icon> RAM: ' + ram + '%</div>';
+        }
+        if (variables.disk_sensor && states[variables.disk_sensor]) {
+          var disk = Math.round(states[variables.disk_sensor].state);
+          info += '<div ' + style + '><ha-icon icon="mdi:harddisk" style="margin: 0px; width: 16px; height: 16px;"></ha-icon> Disk: ' + disk + '%</div>';
+        }
+        info += '</div>';
+
+        return `
+          <div style="display: flex; flex-direction: column; gap: 4px; justify-content: center; align-items: start;">
+            <div style="display: flex; flex-direction: row; gap: 4px; justify-content: center; align-items: center; padding-left: 10px;">
+              <img src="${variables.logo_url}" style="
+                display: block;
+                height: 30px;
+                width: 30px;
+                object-fit: contain;
+              " />
+              <div>
+                ${name}
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 2px; justify-content: center; align-items: start; padding-left: 5px;">
+              ${info}
+            </div>
+          </div>
+        `;
+      ]]]
+    restart:
+      card:
+        type: "horizontal-stack"
+        cards:
+          - entity: "[[[ return variables.restart_entity ]]]"
+            name: "[[[ return name ]]]"
+            icon: "mdi:restart"
+            type: "custom:button-card"
+            template: "widget_icon"
+            tap_action:
+              service: button.press
+              target:
+                entity_id: "[[[ return variables.restart_entity ]]]"
+          - entity: "[[[ return entity.entity_id ]]]"
+            name: "[[[ return name ]]]"
+            state:
+              - value: "on"
+                icon: "mdi:power-off"
+              - value: "off"
+                icon: "mdi:power"
+            type: "custom:button-card"
+            template: "widget_icon"
+            tap_action:
+              action: toggle
