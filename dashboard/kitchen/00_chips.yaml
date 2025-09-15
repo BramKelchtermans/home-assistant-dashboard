@@ -1,0 +1,20 @@
+type: horizontal-stack
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+  - type: 'custom:button-card'
+    template: chip_temperature
+    variables:
+      ulm_chip_temperature_inside: sensor.kitchen_temperature
+      ulm_chip_temperature_outside: sensor.buitentemperatuur
+      ulm_chip_temperature_weather: weather.forecast_home
+  - type: "custom:button-card"
+    template: custom_card_person_chip
+    variables:
+      ulm_custom_card_person_chip_entity: person.bram
+  - type: "custom:button-card"
+    template: custom_card_person_chip
+    variables:
+      ulm_custom_card_person_chip_entity: person.inez_2

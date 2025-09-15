@@ -1,0 +1,19 @@
+type: vertical-stack
+cards:
+  - type: picture
+    image: "/local/audi.jpg"
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_battery
+        entity: sensor.audi_q4_e_tron_state_of_charge
+        variables:
+          # ulm_card_battery_charger_type_entity_id: sensor.audi_q4_e_tron_state_of_charge
+          ulm_card_battery_charging_animation: true
+          ulm_card_battery_battery_state_entity_id : sensor.audi_q4_e_tron_charging_state
+          ulm_card_battery_battery_level_danger: 15
+          ulm_card_battery_battery_level_warning: 40
+          ulm_card_battery_name: Batterij
+      - type: 'custom:button-card'
+        template: card_generic
+        entity: sensor.audi_q4_e_tron_range

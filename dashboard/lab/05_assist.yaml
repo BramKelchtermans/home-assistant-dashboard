@@ -1,0 +1,4 @@
+type: custom:button-card
+tap_action:
+  action: assist
+  start_listening: false

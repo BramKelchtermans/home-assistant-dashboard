@@ -1,0 +1,25 @@
+type: custom:collapsable-cards
+title: Computer
+cards:
+  - type: 'custom:button-card'
+    template: card_vertical_button
+    styles:
+        card:
+          - background: "color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent)"
+    entity: switch.computer_switch
+    name: Power
+    icon: mdi:desktop-tower
+    show_last_changed: true
+    variables:
+      ulm_card_vertical_button_color: red
+  - entity: sensor.steam_76561198028495990
+    type: "custom:button-card"
+    template: card_steam
+  - type: 'custom:button-card'
+    template: card_vertical_button
+    entity: switch.computer_inez_switch
+    name: PC Inez
+    icon: mdi:desktop-tower
+    show_last_changed: true
+    variables:
+      ulm_card_vertical_button_color: red

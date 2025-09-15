@@ -1,0 +1,24 @@
+type: horizontal-stack
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+  - type: 'custom:button-card'
+    template: chip_icon_label
+    triggers_update:
+      - sensor.node_proxmox_cpu_used
+    label: "[[[ const percentage = Math.round(states['sensor.node_proxmox_cpu_used'].state * 100) / 100; return percentage + '%'; ]]]"
+    icon: 'fa-solid:microchip'
+  - type: 'custom:button-card'
+    template: chip_icon_label
+    triggers_update:
+      - sensor.node_proxmox_memory_used_percentage
+    label: "[[[ const percentage = Math.round(states['sensor.node_proxmox_memory_used_percentage'].state * 100) / 100; return percentage + '%'; ]]]"
+    icon: 'fa-solid:memory'
+  - type: 'custom:button-card'
+    template: chip_icon_label
+    triggers_update:
+      - sensor.storage_proxmox_local_lvm_disk_used_percentage
+    label: "[[[ const percentage = Math.round(states['sensor.storage_proxmox_local_lvm_disk_used_percentage'].state * 100) / 100; return percentage + '%'; ]]]"
+    icon: 'mdi:harddisk'

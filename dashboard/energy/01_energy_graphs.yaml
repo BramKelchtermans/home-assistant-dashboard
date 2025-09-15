@@ -1,0 +1,57 @@
+type: vertical-stack
+cards: 
+  - type: custom:bubble-card
+    card_type: separator
+    name: Energie
+    icon: mdi:lightning-bolt
+    styles: |
+      ha-card {
+        margin-top: 1rem;
+      }
+      ha-card .separator-container div:last-child {
+        background-color: var(--primary-text-color);
+      }
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        icon: mdi:home-lightning-bolt
+        entities: 
+          - entity: sensor.energy_consumed
+            color: "#4cc9f0"
+        name: "Elektriciteit"
+        show:
+          graph: bar
+          legend: false
+        points_per_hour: 1
+        hours_to_show: 24
+        style: |-
+          ha-card {
+            background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+          }
+        aggregate_func: diff
+      - type: custom:mini-graph-card
+        icon: mdi:fire-circle
+        style: |-
+          ha-card {
+            background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+          }
+        entities: 
+          - entity: sensor.gas_consumed_belgium
+            color: "#7c68a0"
+        name: "Gas"
+        show:
+          graph: bar
+          legend: false
+        points_per_hour: 1
+        hours_to_show: 24
+        aggregate_func: diff
+  # - type: energy-date-selection
+  # - type: "custom:button-card"
+  #   template: card_title
+  #   name: Electriciteit
+  # - type: energy-usage-graph
+  # - type: "custom:button-card"
+  #   template: card_title
+  #   name: Gas
+  # - type: energy-gas-graph
+

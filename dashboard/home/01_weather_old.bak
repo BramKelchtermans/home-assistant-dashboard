@@ -1,0 +1,197 @@
+type: vertical-stack
+cards:
+  - type: 'custom:local-conditional-card'
+    id: home_weather
+    default: show
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:paper-buttons-row
+          styles:
+            border-radius: 28px
+            justify-content: center
+            width: max-content
+            margin: 0 auto 6px auto
+            background-color: rgb(from var(--primary-text-color) r g b / 0.1);
+          base_config:
+            styles:
+              button:
+                border-radius: 24px
+                padding: 6px 12px
+                color: var(--primary-text-color)
+                display: flex
+                align-items: center
+                justify-content: center
+          buttons:
+            - name: Weer
+              icon: mdi:weather-partly-cloudy
+              preset: headerbutton
+              styles:
+                button:
+                  background-color: rgb(from var(--primary-text-color) r g b / 0.2);
+              tap_action:
+                action: fire-dom-event
+                local_conditional_card:
+                  action: set
+                  ids:
+                    - home_weather: show
+                    - home_heating: hide
+                    - home_airco: hide
+            - name: Verwarming
+              icon: mdi:fire
+              tap_action:
+                action: fire-dom-event
+                local_conditional_card:
+                  action: set
+                  ids:
+                    - home_weather: hide
+                    - home_heating: show
+                    - home_airco: hide
+            - name: Airco
+              icon: mdi:snowflake
+              tap_action:
+                action: fire-dom-event
+                local_conditional_card:
+                  action: set
+                  ids:
+                    - home_weather: hide
+                    - home_heating: hide
+                    - home_airco: show
+        - type: "custom:button-card"
+          template: card_weather
+          entity: weather.forecast_home
+          variables:
+            ulm_card_weather_name: " "
+            ulm_card_weather_primary_info:
+              - wind_speed
+              - precipitation_probability
+            ulm_card_weather_backdrop:
+              fade: true
+  - type: 'custom:local-conditional-card'
+    id: home_heating
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:paper-buttons-row
+          styles:
+            border-radius: 28px
+            justify-content: center
+            width: max-content
+            margin: 0 auto 6px auto
+            background-color: rgb(from var(--primary-text-color) r g b / 0.1);
+          base_config:
+            styles:
+              button:
+                border-radius: 24px
+                padding: 6px 12px
+                color: var(--primary-text-color)
+                display: flex
+                align-items: center
+                justify-content: center
+          buttons:
+            - name: Weer
+              icon: mdi:weather-partly-cloudy
+              preset: headerbutton
+              tap_action:
+                action: fire-dom-event
+                local_conditional_card:
+                  action: set
+                  ids:
+                    - home_weather: show
+                    - home_heating: hide
+                    - home_airco: hide
+            - name: Verwarming
+              icon: mdi:fire
+              styles:
+                button:
+                  background-color: rgb(from var(--primary-text-color) r g b / 0.2);
+              tap_action:
+                action: fire-dom-event
+                local_conditional_card:
+                  action: set
+                  ids:
+                    - home_weather: hide
+                    - home_heating: show
+                    - home_airco: hide
+            - name: Airco
+              icon: mdi:snowflake
+              tap_action:
+                action: fire-dom-event
+                local_conditional_card:
+                  action: set
+                  ids:
+                    - home_weather: hide
+                    - home_heating: hide
+                    - home_airco: show
+        - type: custom:mushroom-climate-card
+          entity: climate.downstairs
+          name: Thermostaat
+          show_temperature_control: true
+          hvac_modes:
+            - heat
+            - auto
+            - "off"
+  - type: 'custom:local-conditional-card'
+    id: home_airco
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:paper-buttons-row
+          styles:
+            border-radius: 28px
+            justify-content: center
+            width: max-content
+            margin: 0 auto 6px auto
+            background-color: rgb(from var(--primary-text-color) r g b / 0.1);
+          base_config:
+            styles:
+              button:
+                border-radius: 24px
+                padding: 6px 12px
+                color: var(--primary-text-color)
+                display: flex
+                align-items: center
+                justify-content: center
+          buttons:
+            - name: Weer
+              icon: mdi:weather-partly-cloudy
+              preset: headerbutton
+              tap_action:
+                action: fire-dom-event
+                local_conditional_card:
+                  action: set
+                  ids:
+                    - home_weather: show
+                    - home_heating: hide
+                    - home_airco: hide
+            - name: Verwarming
+              icon: mdi:fire
+              tap_action:
+                action: fire-dom-event
+                local_conditional_card:
+                  action: set
+                  ids:
+                    - home_weather: hide
+                    - home_heating: show
+                    - home_airco: hide
+            - name: Airco
+              icon: mdi:snowflake
+              styles:
+                button:
+                  background-color: rgb(from var(--primary-text-color) r g b / 0.2);
+              tap_action:
+                action: fire-dom-event
+                local_conditional_card:
+                  action: set
+                  ids:
+                    - home_weather: hide
+                    - home_heating: hide
+                    - home_airco: show
+        - type: custom:mushroom-climate-card
+          entity: climate.airco_beneden
+          name: Airco Beneden
+          show_temperature_control: true
+          hvac_modes:
+            - cool
+            - auto
+            - "off"

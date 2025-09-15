@@ -1,0 +1,57 @@
+---
+button_card_templates: !include_dir_merge_named "../../custom_components/ui_lovelace_minimalist/__ui_minimalist__/ulm_templates/"
+kiosk_mode:
+  mobile_settings:
+    hide_header: true
+    ignore_entity_settings: true
+title: "Minimalist"
+theme: "minimalist-desktop"
+background: "var(--background-image)"
+resources: !include "../../resources.yaml"
+views:
+  - title: "Home"
+    path: "home"
+    cards:
+      - type: vertical-stack
+        cards: !include_dir_list home/
+  - title: "House"
+    path: "house"
+    cards: !include_dir_list house/
+  - title: "Living"
+    path: "living"
+    cards: !include_dir_list living/
+  - title: "Keuken"
+    path: "kitchen"
+    cards: !include_dir_list kitchen/
+  - title: "Slaapkamer"
+    path: "bedroom"
+    styles:
+      view:
+        - background-color: blue
+    cards: !include_dir_list bedroom/
+  - title: "Lab"
+    path: "lab"
+    cards: !include_dir_list lab/
+  - title: "Hobbykamer"
+    path: "workplace"
+    cards: !include_dir_list workplace/
+  # - title: "Lichten"
+  #   path: "lights"
+  #   cards: !include_dir_list lights/
+  - title: "Berging"
+    path: "berging"
+    cards: !include_dir_list storage/
+  - title: "Energie"
+    path: "energy"
+    cards: !include_dir_list energy/
+  # - title: "Instellingen"
+  #   path: "settings"
+  #   cards: !include_dir_list settings/
+  - title: "Proxmox"
+    path: "proxmox"
+    cards: !include_dir_list proxmox/
+  - title: "Auto"
+    path: "car"
+    cards:
+      - type: vertical-stack
+        cards: !include_dir_list car/

@@ -1,0 +1,60 @@
+# type: custom:collapsable-cards
+# title: Lampen
+type: vertical-stack
+cards:
+  - type: custom:bubble-card
+    card_type: separator
+    name: Lampen
+    icon: mdi:lamp
+    styles: |
+      ha-card {
+        margin-top: 1rem;
+      }
+      ha-card .separator-container div:last-child {
+        background-color: var(--primary-text-color);
+      }
+  - type: custom:mushroom-light-card
+    entity: light.wled_gamedisplay
+    icon: mdi:led-strip-variant
+    layout: horizontal
+    use_light_color: true
+    show_brightness_control: true
+    show_color_control: true
+  - type: custom:mushroom-light-card
+    entity: light.desk_wled
+    icon: mdi:led-strip-variant
+    layout: horizontal
+    show_color_control: true
+    show_brightness_control: true
+    use_light_color: true
+  - type: custom:mushroom-light-card
+    entity: light.moodlights
+    icon: mdi:lamps
+    layout: horizontal
+    show_brightness_control: true
+    show_color_temp_control: true
+  # - type: "custom:button-card"
+  #   template: card_light_slider
+  #   entity: light.moodlights
+  #   variables:
+  #     ulm_card_light_enable_slider: true
+  #     ulm_card_light_enable_color: true
+  # #     ulm_card_light_force_background_color: true
+  - type: "custom:button-card"
+    template: card_light_slider
+    entity: light.lamp_woonkamer
+    variables:
+      ulm_card_light_enable_slider: false
+      ulm_card_light_enable_color: false
+      ulm_card_light_force_background_color: true
+  # - type: "custom:button-card"
+  #   template: card_vertical_button
+  #   styles:
+  #     card:
+  #       - background: "color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent)"
+  #   entity: switch.kerstlampjes
+  #   name: Kerstverlichting
+  #   icon: mdi:pine-tree
+  #   show_last_changed: true
+  #   variables:
+  #     ulm_card_vertical_button_color: green

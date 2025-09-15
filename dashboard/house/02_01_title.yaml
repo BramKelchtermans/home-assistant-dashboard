@@ -1,0 +1,11 @@
+type: custom:bubble-card
+card_type: separator
+name: Afvalbeheer
+icon: mdi:trash-can
+styles: |
+  ha-card {
+    margin-top: 1rem;
+  }
+  ha-card .separator-container div:last-child {
+    background-color: var(--primary-text-color);
+  }

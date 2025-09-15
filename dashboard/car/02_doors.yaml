@@ -1,0 +1,70 @@
+type: vertical-stack
+cards:
+  - type: custom:bubble-card
+    card_type: separator
+    name: Deuren
+    icon: mdi:door
+    styles: |
+      ha-card {
+        margin-top: 1rem;
+      }
+      ha-card .separator-container div:last-child {
+        background-color: var(--primary-text-color);
+      }
+  - type: "custom:button-card"
+    template: card_binary_sensor_alert_bram
+    variables:
+      ulm_card_binary_sensor_name: Beweging
+      ulm_show_last_changed: true
+      color: "255, 128, 0"
+      icon_on: "mdi:lock-open"
+      icon_off: "mdi:lock"
+    entity: binary_sensor.audi_q4_e_tron_doors_lock
+    name: >
+      [[[
+        if (states['binary_sensor.audi_q4_e_tron_doors_lock'].state == 'off') {
+          return 'Deuren op slot';
+        } else {
+          return 'Deuren ontgrendeld';
+        }
+      ]]]
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_binary_sensor_alert_bram
+        variables:
+          ulm_card_binary_sensor_name: Linksvoor
+          ulm_show_last_changed: true
+          color: "220,20,60"
+          icon_on: "mdi:door-open"
+          icon_off: "mdi:door"
+        entity: binary_sensor.audi_q4_e_tron_left_front_door
+      - type: "custom:button-card"
+        template: card_binary_sensor_alert_bram
+        variables:
+          ulm_card_binary_sensor_name: Rechtsvoor
+          ulm_show_last_changed: true
+          color: "220,20,60"
+          icon_on: "mdi:door-open"
+          icon_off: "mdi:door"
+        entity: binary_sensor.audi_q4_e_tron_right_front_door
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_binary_sensor_alert_bram
+        variables:
+          ulm_card_binary_sensor_name: Linksachter
+          ulm_show_last_changed: true
+          color: "220,20,60"
+          icon_on: "mdi:door-open"
+          icon_off: "mdi:door"
+        entity: binary_sensor.audi_q4_e_tron_left_rear_door
+      - type: "custom:button-card"
+        template: card_binary_sensor_alert_bram
+        variables:
+          ulm_card_binary_sensor_name: Rechtsachter
+          ulm_show_last_changed: true
+          color: "220,20,60"
+          icon_on: "mdi:door-open"
+          icon_off: "mdi:door"
+        entity: binary_sensor.audi_q4_e_tron_right_rear_door

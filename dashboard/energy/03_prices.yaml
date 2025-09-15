@@ -1,0 +1,59 @@
+type: vertical-stack
+cards: 
+  - type: custom:bubble-card
+    card_type: separator
+    name: Prijzen
+    icon: mdi:cash
+    styles: |
+      ha-card {
+        margin-top: 1rem;
+      }
+      ha-card .separator-container div:last-child {
+        background-color: var(--primary-text-color);
+      }
+  # - type: horizontal-stack
+  #   cards: 
+  - type: "custom:button-card"
+    template: card_input_number_bram
+    style: |-
+      ha-card {
+        background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+      }
+    entity: input_number.luminus_day_tariff
+    variables:
+      ulm_card_input_number_name: "Dagtarief"
+  - type: "custom:button-card"
+    template: card_input_number_bram
+    style: |-
+      ha-card {
+        background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+      }
+    entity: input_number.luminus_night_tariff
+    icon: "fas:temperature-high"
+    variables:
+      ulm_card_input_number_name: "Nachttarief"
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: card_generic
+        style: |-
+          ha-card {
+            background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+          }
+        entity: sensor.energy_consumed_tariff_1_cost
+        variables:
+          ulm_card_generic_icon: far:sun
+          ulm_card_generic_name: Dagkosten
+          ulm_card_generic_round: 4
+      - type: custom:button-card
+        template: card_generic
+        style: |-
+          ha-card {
+            background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+          }
+        entity: sensor.energy_consumed_tariff_2_cost
+        value: test
+        variables:
+          ulm_card_generic_icon: far:moon
+          ulm_card_generic_name: Nachtkosten
+          ulm_card_generic_round: 4

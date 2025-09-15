@@ -1,0 +1,20 @@
+type: horizontal-stack
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+  - type: "custom:button-card"
+    template: chip_mdi_icon_state
+    label: "[[[ return states[variables.ulm_chip_mdi_icon_state_entity].state + ' Mbit/s' ]]]"
+    variables:
+      ulm_chip_mdi_icon_state_entity: sensor.speedtest_download
+      ulm_chip_mdi_icon_state_icon: mdi:arrow-down-bold-circle-outline
+      ulm_chip_mdi_icon_state_icon_color: "#6afff3"
+  - type: "custom:button-card"
+    template: chip_mdi_icon_state
+    label: "[[[ return states[variables.ulm_chip_mdi_icon_state_entity].state + ' Mbit/s' ]]]"
+    variables:
+      ulm_chip_mdi_icon_state_entity: sensor.speedtest_upload
+      ulm_chip_mdi_icon_state_icon: mdi:arrow-up-bold-circle-outline
+      ulm_chip_mdi_icon_state_icon_color: "#bf71ff"

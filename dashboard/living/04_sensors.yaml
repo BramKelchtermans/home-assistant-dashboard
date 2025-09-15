@@ -1,0 +1,48 @@
+type: vertical-stack
+cards:
+  - type: custom:bubble-card
+    card_type: separator
+    name: Sensors
+    icon: mdi:access-point
+    styles: |
+      ha-card {
+        margin-top: 1rem;
+      }
+      ha-card .separator-container div:last-child {
+        background-color: var(--primary-text-color);
+      }
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        template: card_binary_sensor_alert_bram
+        variables:
+          battery_level: '[[[ return states["sensor.bewegingssensor_living_battery"].state ]]]'
+          ulm_card_binary_sensor_name: Beweging
+          ulm_show_last_changed: true
+          color: "255, 128, 0"
+          icon_on: "mdi:motion-sensor"
+          icon_off: "mdi:motion-sensor"
+        entity: binary_sensor.bewegingssensor_living_occupancy
+        name: Beweging
+      - type: 'custom:button-card'
+        template: card_binary_sensor_alert_bram
+        variables:
+          battery_level: '[[[ return states["sensor.deursensor_raam_battery"].state ]]]'
+          ulm_card_binary_sensor_name: Raam
+          ulm_show_last_changed: false
+          color: "0, 196, 193"
+          icon_on: "mdi:window-open"
+          icon_off: "mdi:window-closed"
+        entity: binary_sensor.deursensor_raam_contact
+        name: Raam
+  - type: "custom:button-card"
+    template: card_vertical_button
+    entity: switch.voetenzak
+    name: Voetenzak
+    icon: fa-solid:socks
+    show_last_changed: false
+    styles:
+      card:
+        - background: "color-mix(in srgb, var(--ha-card-background,var(--card-background-color)) 80%, transparent) !important"
+    variables:
+      ulm_card_vertical_button_color: 'purple'

@@ -1,0 +1,99 @@
+type: "vertical-stack"
+cards:
+  - type: "conditional"
+    conditions:
+      - entity: binary_sensor.show_airco_in_dashboard
+        state: "on"
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:bubble-card
+          card_type: separator
+          name: Airconditioner
+          icon: mdi:air-conditioner
+          styles: |
+            ha-card {
+              margin-top: 1rem;
+            }
+            ha-card .separator-container div:last-child {
+              background-color: var(--primary-text-color);
+            }
+        - type: "custom:button-card"
+          styles:
+            card:
+              - background: "color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent)"
+          template: card_vertical_button
+          entity: switch.airco_power
+          name: "Power"
+          icon: mdi:power
+          show_last_changed: false
+          variables:
+            ulm_card_vertical_button_color: red
+            ulm_name_tap_action: "call-service"
+            ulm_name_tap_service: "switch.toggle"
+            ulm_name_tap_service_data:
+              entity_id: switch.stopcontact_airco_slaapkamer
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              styles:
+                card:
+                  - background: "color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent)"
+              template: card_vertical_button
+              entity: switch.airco_temperature_up
+              name: "Temperature up"
+              icon: mdi:thermometer-plus
+              show_last_changed: false
+              variables:
+                ulm_card_vertical_button_state: Away
+                ulm_card_vertical_button_color: green
+            - type: "custom:button-card"
+              styles:
+                card:
+                  - background: "color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent)"
+              template: card_vertical_button
+              entity: switch.airco_temperature_down
+              name: "Temperature down"
+              icon: "mdi:thermometer-minus"
+              show_last_changed: false
+              variables:
+                ulm_card_vertical_button_state: Away
+                ulm_card_vertical_button_color: green
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              styles:
+                card:
+                  - background: "color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent)"
+              template: card_vertical_button
+              entity: switch.airco_mode
+              name: "Mode"
+              icon: mdi:swap-horizontal
+              show_last_changed: false
+              variables:
+                ulm_card_vertical_button_state: Away
+                ulm_card_vertical_button_color: green
+            - type: "custom:button-card"
+              styles:
+                card:
+                  - background: "color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent)"
+              template: card_vertical_button
+              entity: switch.airco_fan_speed
+              name: "Fan Speed"
+              icon: "mdi:fan"
+              show_last_changed: false
+              variables:
+                ulm_card_vertical_button_state: Away
+                ulm_card_vertical_button_color: green
+            - type: "custom:button-card"
+              styles:
+                card:
+                  - background: "color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent)"
+              template: card_vertical_button
+              entity: switch.airco_timer
+              name: "Timing"
+              icon: "mdi:clock-outline"
+              show_last_changed: false
+              variables:
+                ulm_card_vertical_button_state: Away
+                ulm_card_vertical_button_color: green

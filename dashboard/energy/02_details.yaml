@@ -1,0 +1,64 @@
+type: 'vertical-stack'
+cards:
+  - type: custom:bubble-card
+    card_type: separator
+    name: Details
+    icon: mdi:chart-box
+    styles: |
+      ha-card {
+        margin-top: 1rem;
+      }
+      ha-card .separator-container div:last-child {
+        background-color: var(--primary-text-color);
+      }
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:mini-graph-card'
+        name: "Huidig verbruik"
+        animate: true
+        cache: false
+        icon: "mdi:flash"
+        style: |-
+          ha-card {
+            background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+          }
+        update_interval: 2
+        points_per_hour: 60
+        hours_to_show: 0.5
+        entities:
+          - name: "Compleet verbruik"
+            entity: sensor.power_consumed_watt
+            color: "rgb(255, 162, 0)"
+        show:
+          legend: false
+          icon_adaptive_color: true
+          show_points: false
+      - type: 'custom:mini-graph-card'
+        name: "Apparaten"
+        animate: true
+        style: |-
+          ha-card {
+            background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+          } 
+        cache: false 
+        points_per_hour: 1
+        hours_to_show: 1
+        icon: mdi:devices
+        show:
+          graph: bar
+          legend: false
+          labels: true
+          state: false
+        entities:
+          - name: "Computer"
+            entity: sensor.desk_switch_power
+            color: "rgb(255, 102, 0)"
+          # - name: "Airco"
+          #   entity: sensor.airco_stroomverbruik
+          #   color: "rgb(0, 186, 109)"
+          - name: "Wasmachine"
+            entity: sensor.washing_machine_power
+            color: "rgb(242,172,185)"
+          - name: "Droogkast"
+            entity: sensor.dryer_power
+            color: "rgb(137, 207, 240)"

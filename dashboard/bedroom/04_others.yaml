@@ -1,0 +1,73 @@
+type: vertical-stack
+cards:
+  - type: custom:bubble-card
+    card_type: separator
+    name: Sensors
+    icon: mdi:access-point
+    styles: |
+      ha-card {
+        margin-top: 1rem;
+      }
+      ha-card .separator-container div:last-child {
+        background-color: var(--primary-text-color);
+      }
+  - type: "custom:button-card"
+    template: card_binary_sensor_alert_bram
+    variables:
+      ulm_card_binary_sensor_name: Beweging
+      ulm_show_last_changed: true
+      color: "255, 128, 0"
+      icon_on: "mdi:motion-sensor"
+      icon_off: "mdi:motion-sensor"
+    entity: binary_sensor.everything_presence_one_3fec14_occupancy
+    name: Beweging
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.show_airco_in_dashboard
+        state: "off"
+    card:
+      type: "custom:button-card"
+      styles:
+        card:
+          - background: "color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent)"
+      template: card_vertical_button
+      entity: switch.bed_warmer
+      name: Bed warmer
+      icon: mdi:bed
+      show_last_changed: true
+      variables:
+        ulm_card_vertical_button_color: yellow
+  - type: "custom:mini-graph-card"
+    name: "Bed weegschaal"
+    style: |-
+      ha-card {
+        background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+      }
+    update_interval: 2
+    points_per_hour: 60
+    hours_to_show: 0.5
+    icon: "mdi:bed"
+    entities:
+      - entity: sensor.bed_scale_value
+        color: "#8500c7"
+        name: "Huidig gewicht"
+    show:
+      legend: false
+      icon_adaptive_color: true
+      show_points: false
+    animate: true
+    cache: false
+  - type: "custom:button-card"
+    template: card_input_number
+    entity: input_number.delta_hours_before_bedtime
+    icon: "mdi:bed-block"
+    variables:
+      ulm_card_input_number_name: "Bedtimer"
+  - type: "custom:button-card"
+    template: card_vertical_button
+    entity: input_boolean.bed_override
+    name: Bed override
+    icon: mdi:bed
+    show_last_changed: true
+    variables:
+      ulm_card_vertical_button_color: red

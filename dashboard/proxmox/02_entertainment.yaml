@@ -1,0 +1,89 @@
+type: custom:expander-card
+title-card-clickable: true
+padding: 0.5em
+expanded: true
+child-margin-top: 0.5em
+card_mod:
+  style: |
+    ha-card {
+      border-radius: 20px !important;
+    }
+title-card:
+  type: "custom:button-card"
+  template: card_title
+  name: "Media & Entertainment"
+  card_mod:
+    style: |
+      ha-card {
+        margin-left: 0.5em !important;
+        margin-top: auto !important;
+      }
+cards:
+  - type: "horizontal-stack"
+    cards:
+      - type: 'custom:button-card'
+        styles:
+          card:
+            - box-shadow: none !important;
+        variables:
+          cpu_sensor: "sensor.lxc_plex_100_cpu_used"
+          ram_sensor: "sensor.lxc_plex_100_memory_used_percentage"
+          disk_sensor: "sensor.lxc_plex_100_disk_used_percentage"
+          restart_entity: "button.lxc_plex_100_reboot"
+          show_pct: true
+          name: "Plex"
+          logo_url: "/local/docker_logos/plex.png"
+        template:
+          - card_computer
+        name: Plex
+        entity: "switch.plex_lxc"
+      - type: 'custom:button-card'
+        styles:
+          card:
+            - box-shadow: none !important;
+        variables:
+          cpu_sensor: "sensor.lxc_jellyfin_114_cpu_used"
+          ram_sensor: "sensor.lxc_jellyfin_114_memory_used_percentage"
+          disk_sensor: "sensor.lxc_jellyfin_114_disk_used_percentage"
+          restart_entity: "button.lxc_jellyfin_114_reboot"
+          show_pct: true
+          name: "Jellyfin"
+          logo_url: "/local/docker_logos/jellyfin.svg"
+        template:
+          - card_computer
+        name: Jellyfin
+        entity: "switch.jellyfin_lxc"
+  - type: "horizontal-stack"
+    cards:
+      - type: 'custom:button-card'
+        styles:
+          card:
+            - box-shadow: none !important;
+        variables:
+          cpu_sensor: "sensor.lxc_threadfin_116_cpu_used"
+          ram_sensor: "sensor.lxc_threadfin_116_memory_used_percentage"
+          disk_sensor: "sensor.lxc_threadfin_116_disk_used_percentage"
+          restart_entity: "button.lxc_threadfin_116_reboot"
+          show_pct: true
+          name: "Threadfin"
+          logo_url: "/local/docker_logos/tv.png"
+        template:
+          - card_computer
+        name: Threadfin
+        entity: "switch.threadfin_lxc"
+      - type: 'custom:button-card'
+        styles:
+          card:
+            - box-shadow: none !important;
+        variables:
+          cpu_sensor: "sensor.lxc_minecraft_server_110_cpu_used"
+          ram_sensor: "sensor.lxc_minecraft_server_110_memory_used_percentage"
+          disk_sensor: "sensor.lxc_minecraft_server_110_disk_used_percentage"
+          restart_entity: "button.lxc_minecraft_server_110_reboot"
+          show_pct: true
+          name: "Minecraft"
+          logo_url: "/local/docker_logos/minecraft.png"
+        template:
+          - card_computer
+        name: Minecraft
+        entity: "switch.minecraft_server_lxc"

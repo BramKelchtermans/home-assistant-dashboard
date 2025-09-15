@@ -1,0 +1,92 @@
+type: custom:expander-card
+title-card-clickable: true
+padding: 0.5em
+expanded: true
+child-margin-top: 0.5em
+card_mod:
+  style: |
+    ha-card {
+      border-radius: 20px !important;
+    }
+title-card:
+  type: "custom:button-card"
+  template: card_title
+  name: Boven
+  card_mod:
+    style: |
+      ha-card {
+        margin-left: 0.5em !important;
+        margin-top: auto !important;
+      }
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        variables:
+          icon_color: "255,255,255"
+          temperature_sensor: sensor.bedroom_temperature_temperature
+          background_url: "/local/backgrounds/slaapkamer.jpg"
+          sensor1_id: "binary_sensor.bram_in_bed"
+          icon1_on: "mdi:face-man"
+          sensor2_id: "binary_sensor.inez_in_bed"
+          icon2_on: "mdi:face-woman"
+        template:
+          - card_bram_room
+        name: Slaapkamer
+        triggers_update:
+          - lights.nachtlampen
+          - binary_sensor.bram_in_bed
+          - binary_sensor.inez_in_bed
+        entity: "light.nachtlampen"
+        tap_action:
+          action: navigate
+          navigation_path: 'bedroom'
+      - type: 'custom:button-card'
+        variables:
+          icon_color: "255,255,255"
+          background_url: "https://www.thespruce.com/thmb/YTUI9EVLHEZKr3avv2wWl5KnbKw=/3000x2000/filters:fill(auto,1)/code-requirements-risers-treads-stair-width-and-more-4120151-hero-da8aafa7a8f64bbc81ff94f6be63e7dd.jpg"
+          sensor1_id: "binary_sensor.bewegingssensor_trap_occupancy"
+          icon1_on: "mdi:motion-sensor"
+          sensor2_id: "binary_sensor.deursensor_badkamer_contact"
+          icon2_on: "mdi:door-open"
+          icon2_off: "mdi:door-closed"
+        template:
+          - card_bram_room
+        name: Trappenhal
+        triggers_update:
+          - lights.lamp_trappenhal
+          - binary_sensor.bewegingssensor_trap_occupancy
+          - binary_sensor.deursensor_badkamer_contact
+        entity: "light.lamp_trappenhal"
+        tap_action:
+          action: navigate
+          navigation_path: 'living'
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        variables:
+          icon_color: "255,255,255"
+          background_url: "https://static.onecms.io/wp-content/uploads/sites/34/2019/10/darcy-miller-studio-tour-desks-1019.jpg"
+          sensor1_id: "switch.soldering_iron"
+          icon1_on: "mdi:soldering-iron"
+          sensor2_id: "switch.tv_hobby_kamer"
+          icon2_on: "fas:tv"
+        template:
+          - card_bram_room
+        name: Hobbykamer
+        triggers_update:
+          - lights.lamp_trappenhal
+          - switch.tv_hobby_kamer
+          - switch.soldering_iron
+        entity: "light.lamp_trappenhal"
+        tap_action:
+          action: navigate
+          navigation_path: 'workplace'
+      - type: markdown
+        content: " "
+        card_mod:
+          style: |
+            * {
+              background-color: transparent !important;
+              box-shadow: none !important;
+            }

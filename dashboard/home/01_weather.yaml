@@ -1,0 +1,80 @@
+type: custom:expander-card
+title-card-clickable: true
+padding: 0.5em
+card_mod:
+  style: |
+    ha-card {
+      border-radius: 20px !important;
+    }
+title-card:
+    type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_title
+        name: "🌤️ Weer"
+        card_mod:
+          style: |
+            ha-card {
+              margin-left: 0.5em !important;
+              margin-top: auto !important;
+            }
+      - type: markdown
+        content: " "
+        card_mod:
+          style: |
+            * {
+              background-color: transparent !important;
+              box-shadow: none !important;
+            }
+      - type: 'custom:button-card'
+        template: chip_temperature
+        card_mod:
+          style: |
+            ha-card {
+              margin-top: 2px;
+              box-shadow: none !important;
+              background-color: transparent !important;
+            }
+        variables:
+          ulm_chip_temperature_inside: sensor.kitchen_temperature
+          ulm_chip_temperature_outside: sensor.buitentemperatuur
+          ulm_chip_temperature_weather: weather.forecast_home
+cards:
+  - type: custom:simple-weather-card
+    backdrop: true
+    name: " "
+    entity: weather.forecast_home
+  - type: "custom:button-card"
+    template: card_tab_card
+    card_mod:
+      style: |
+        ha-card {
+          box-shadow: none !important;
+          margin-top: 0.5em;
+        }
+    variables:
+      card_id: home_weather_tabs
+      color: "var(--orange-color)"
+      tabs:
+        - name: "Verwarming"
+          icon: "mdi:fire"
+          content:
+            type: custom:mushroom-climate-card
+            entity: climate.downstairs
+            name: Thermostaat
+            show_temperature_control: true
+            hvac_modes:
+              - heat
+              - auto
+              - "off"
+        - name: "Airco"
+          icon: "mdi:snowflake"
+          content:
+            type: custom:mushroom-climate-card
+            entity: climate.airco_beneden
+            name: Airco Beneden
+            show_temperature_control: true
+            hvac_modes:
+              - cool
+              - auto
+              - "off"

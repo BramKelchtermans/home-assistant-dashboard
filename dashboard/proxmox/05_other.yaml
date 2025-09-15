@@ -1,0 +1,81 @@
+type: custom:expander-card
+title-card-clickable: true
+padding: 0.5em
+expanded: true
+child-margin-top: 0.5em
+card_mod:
+  style: |
+    ha-card {
+      border-radius: 20px !important;
+    }
+title-card:
+  type: "custom:button-card"
+  template: card_title
+  name: "Other"
+  card_mod:
+    style: |
+      ha-card {
+        margin-left: 0.5em !important;
+        margin-top: auto !important;
+      }
+cards:
+  - type: "horizontal-stack"
+    cards:
+      - type: 'custom:button-card'
+        styles:
+          card:
+            - box-shadow: none !important;
+        variables:
+          cpu_sensor: "sensor.lxc_home_assistant_101_cpu_used"
+          ram_sensor: "sensor.lxc_home_assistant_101_memory_used_percentage"
+          disk_sensor: "sensor.lxc_home_assistant_101_disk_used_percentage"
+          restart_entity: "button.lxc_home_assistant_101_reboot"
+          show_pct: true
+          name: "HASS"
+          logo_url: "/local/docker_logos/home-assistant.svg"
+        template:
+          - card_computer
+        name: Home Assistant
+        entity: "switch.home_assistant_lxc"
+      - type: 'custom:button-card'
+        styles:
+          card:
+            - box-shadow: none !important;
+        variables:
+          cpu_sensor: "sensor.lxc_dockers_102_cpu_used"
+          ram_sensor: "sensor.lxc_dockers_102_memory_used_percentage"
+          disk_sensor: "sensor.lxc_dockers_102_disk_used_percentage"
+          restart_entity: "button.lxc_dockers_102_reboot"
+          show_pct: true
+          name: "Dockers"
+          logo_url: "/local/docker_logos/docker.webp"
+        template:
+          - card_computer
+        name: Dockers
+        entity: "switch.dockers_lxc"
+  - type: "horizontal-stack"
+    cards:
+      - type: 'custom:button-card'
+        styles:
+          card:
+            - box-shadow: none !important;
+        variables:
+          cpu_sensor: "sensor.lxc_nextcloud_107_cpu_used"
+          ram_sensor: "sensor.lxc_nextcloud_107_memory_used_percentage"
+          disk_sensor: "sensor.lxc_nextcloud_107_disk_used_percentage"
+          restart_entity: "button.lxc_nextcloud_107_reboot"
+          show_pct: true
+          name: "Nextcloud"
+          logo_url: "/local/docker_logos/nextcloud.webp"
+        template:
+          - card_computer
+        name: Nextcloud
+        entity: "switch.nextcloud_lxc"
+      - type: markdown
+        content: " "
+        card_mod:
+          style: |
+            * {
+              background-color: transparent !important;
+              box-shadow: none !important;
+            }

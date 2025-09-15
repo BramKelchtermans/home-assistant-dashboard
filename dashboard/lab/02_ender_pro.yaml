@@ -1,0 +1,64 @@
+type: custom:collapsable-cards
+title: Ender 3 PRO
+cards:
+  - type: 'vertical-stack'
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:mini-graph-card'
+            name: "Bed temperature"
+            update_interval: 2
+            points_per_hour: 60
+            hours_to_show: 0.5
+            style: |-
+              ha-card {
+                background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+              }
+            icon: "mdi:square-circle"
+            entities:
+              - name: "Huidige temperatuur"
+                entity: sensor.octoprint_actual_bed_temp
+                color: "rgb(32, 35, 224)"
+              - entity: sensor.octoprint_target_bed_temp
+                color: "rgb(8, 0, 255)"
+                name: "Target temp"
+            show:
+              legend: false
+              icon_adaptive_color: true
+              show_points: false
+            animate: true
+            cache: false
+          - type: 'custom:mini-graph-card'
+            name: "Nozzle temp."
+            style: |-
+              ha-card {
+                background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+              }
+            animate: true
+            cache: false
+            icon: "mdi:printer-3d-nozzle"
+            update_interval: 2
+            points_per_hour: 60
+            hours_to_show: 0.5
+            entities:
+              - name: "Huidige temperatuur"
+                entity: sensor.octoprint_actual_tool0_temp
+                color: "rgb(247, 89, 113)"
+              - entity: sensor.octoprint_target_tool0_temp
+                name: "Target temp"
+                color: "rgb(248, 144, 133)"
+            show:
+              legend: false
+              icon_adaptive_color: true
+              show_points: false
+      - type: entities
+        style: |-
+          ha-card {
+            background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+          }
+        entities:
+          - entity: binary_sensor.octoprint_printing
+          - entity: sensor.octoprint_current_state
+          - entity: sensor.octoprint_estimated_finish_time
+          - entity: sensor.octoprint_job_percentage
+            

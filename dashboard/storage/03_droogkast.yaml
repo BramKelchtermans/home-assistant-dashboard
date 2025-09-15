@@ -1,0 +1,44 @@
+type: vertical-stack
+cards:
+  - type: custom:bubble-card
+    card_type: separator
+    name: Droogkast
+    icon: mdi:tumble-dryer
+    styles: |
+      ha-card {
+        margin-top: 1rem;
+      }
+      ha-card .separator-container div:last-child {
+        background-color: var(--primary-text-color);
+      }
+  - type: 'custom:button-card'
+    template: card_vertical_button
+    entity: binary_sensor.dryer_busy
+    name: Droogkast
+    styles:
+      card:
+        - background: "color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent)"
+    icon: mdi:tumble-dryer
+    show_last_changed: true
+    variables:
+      ulm_card_vertical_button_color: pink
+  - type: 'custom:mini-graph-card'
+    name: "Power consumption"
+    animate: true
+    cache: false
+    icon: "mdi:flash"
+    style: |-
+      ha-card {
+        background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+      }
+    update_interval: 2
+    points_per_hour: 60
+    hours_to_show: 0.5
+    entities:
+      - name: "Huidige temperatuur"
+        entity: sensor.dryer_power
+        color: "rgb(242,172,185)"
+    show:
+      legend: false
+      icon_adaptive_color: true
+      show_points: false

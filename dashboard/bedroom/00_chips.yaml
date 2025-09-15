@@ -1,0 +1,45 @@
+type: horizontal-stack
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+  - type: 'custom:button-card'
+    template: chip_temperature
+    variables:
+      ulm_chip_temperature_inside: sensor.bedroom_temperature_temperature
+      ulm_chip_temperature_outside: sensor.buitentemperatuur
+      ulm_chip_temperature_weather: weather.forecast_home
+  - type: 'custom:button-card'
+    template: chip_icon_label
+    label: >-
+      [[[
+        const bram = states["binary_sensor.bram_in_bed"].state == "on";
+        const inez = states["binary_sensor.inez_in_bed"].state == "on";
+        if (bram && inez) {
+          return "Bram \& Inez";
+        }
+        if (bram) {
+          return "Bram";
+        }
+        if (inez) {
+          return "Inez";
+        }
+        return "Leeg";
+      ]]]
+    icon: 'fas:bed'
+    color: >-
+      [[[
+        const bram = states["binary_sensor.bram_in_bed"].state == "on";
+        const inez = states["binary_sensor.inez_in_bed"].state == "on";
+        if (bram && inez) {
+          return "#ff8282";
+        }
+        if (bram) {
+          return "#697fff";
+        }
+        if (inez) {
+          return "#ff6ef3";
+        }
+        return null;
+      ]]]

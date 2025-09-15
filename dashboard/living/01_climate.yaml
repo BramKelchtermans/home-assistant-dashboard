@@ -1,0 +1,14 @@
+type: vertical-stack
+cards:
+  - type: custom:mushroom-climate-card
+    entity: climate.airco_beneden
+    name: Airco Beneden
+    show_temperature_control: true
+  - type: "custom:button-card"
+    template: card_fan
+    entity: fan.woonkamer
+    variables:
+      ulm_card_fan_enable_slider: true
+      ulm_card_fan_icon: "mdi:fan"
+      ulm_card_fan_color: "yellow"
+      ulm_card_fan_force_background_color: true

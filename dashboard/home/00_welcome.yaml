@@ -1,0 +1,65 @@
+type: vertical-stack
+cards:
+  - type: "custom:button-card"
+    template: "card_esh_welcome"
+    triggers_update: "input_boolean.minimalist_dropdown"
+    variables:
+      ulm_language: "nl"
+      ulm_card_esh_welcome_collapse: input_boolean.minimalist_dropdown
+      ulm_evening: "Goedeavond"
+      ulm_afternoon: "Goedemiddag"
+      ulm_morning: "Goedemorgen"
+      ulm_hello: "Welkom"
+      ulm_weather: "weather.forecast_home"
+      entity_1:
+        nav: "house"
+        icon: "mdi:home"
+        name: "Huis"
+        color: "33,150,243"
+      entity_2:
+        nav: "energy"
+        icon: "mdi:lightning-bolt"
+        name: "Energie"
+        color: "255,235,59"
+      entity_3:
+        nav: "lab"
+        icon: "mdi:memory"
+        name: "Lab"
+        color: "233,30,99"
+      entity_4:
+        nav: "proxmox"
+        icon: "cib:proxmox"
+        name: "Proxmox"
+        color: "229,112,38"
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        label: >-
+          [[[
+            if (states["person.bram"].state == "home") {
+              return "Thuis";
+            } else {
+              return Math.round(states["sensor.bram_travel_time_home"].state) + " min. reistijd";
+            }
+          ]]]
+        template: card_person
+        variables:
+          ulm_card_person_entity: person.bram
+          ulm_card_person_use_entity_picture: true
+          ulm_card_person_zone1: zone.casa_bram
+          ulm_card_person_zone2: zone.headr_office
+      - type: "custom:button-card"
+        label: >-
+          [[[
+            if (states["person.inez_2"].state == "home") {
+              return "Thuis";
+            } else {
+              return Math.round(states["sensor.inez_travel_time"].state) + " min. reistijd";
+            }
+          ]]]
+        template: card_person
+        variables:
+          ulm_card_person_entity: person.inez_2
+          ulm_card_person_use_entity_picture: true
+          ulm_card_person_zone1: zone.casa_inez
+          ulm_card_person_zone2: zone.ago_office

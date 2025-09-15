@@ -1,0 +1,41 @@
+type: horizontal-stack
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+  - type: 'custom:button-card'
+    template: chip_icon_bram
+    variables:
+      ulm_chip_icon_only: 'mdi:desktop-tower'
+      ulm_chip_icon_color: '#ff6600'
+      ulm_show_chip: "[[[ return states['switch.computer_switch'].state == 'on' ]]]"
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.ps4_is_active
+        state: 'on'
+    card: 
+      type: 'custom:button-card'
+      template: chip_icon_bram
+      variables:
+        ulm_chip_icon_only: 'mdi:sony-playstation'
+        ulm_chip_icon_color: '#006FCD'
+        ulm_show_chip: "[[[ return states['binary_sensor.living_tv_status'].state == 'on' && states['sensor.living_tv_media_input_source'].state == 'HDMI1' ]]]"
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.nintendo_switch_is_active
+        state: 'on'
+    card: 
+      type: 'custom:button-card'
+      template: chip_icon_bram
+      variables:
+        ulm_chip_icon_only: 'mdi:nintendo-switch'
+        ulm_chip_icon_color: '#e60012'
+        ulm_show_chip: "[[[ return states['binary_sensor.living_tv_status'].state == 'on' && states['sensor.living_tv_media_input_source'].state == 'HDMI2' ]]]"
+  - type: 'custom:button-card'
+    template: chip_icon_bram
+    variables:
+      custom_svg_icon: /local/nvidia_logo_icon_169902.svg
+      ulm_chip_icon_color: '#e60012'
+      ulm_show_chip: "[[[ return states['binary_sensor.living_tv_status'].state == 'on' && states['sensor.living_tv_media_input_source'].state == 'HDMI3' ]]]"
+

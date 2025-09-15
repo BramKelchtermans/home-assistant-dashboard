@@ -1,0 +1,87 @@
+type: custom:expander-card
+title-card-clickable: true
+padding: 0.5em
+expanded: true
+child-margin-top: 0.5em
+card_mod:
+  style: |
+    ha-card {
+      border-radius: 20px !important;
+    }
+title-card:
+  type: "custom:button-card"
+  template: card_title
+  name: "Development"
+  card_mod:
+    style: |
+      ha-card {
+        margin-left: 0.5em !important;
+        margin-top: auto !important;
+      }
+cards:
+  - type: "horizontal-stack"
+    cards:
+      - type: 'custom:button-card'
+        styles:
+          card:
+            - box-shadow: none !important;
+        variables:
+          cpu_sensor: "sensor.lxc_remote_development_108_cpu_used"
+          ram_sensor: "sensor.lxc_remote_development_108_memory_used_percentage"
+          disk_sensor: "sensor.lxc_remote_development_108_disk_used_percentage"
+          restart_entity: "button.lxc_remote_development_108_reboot"
+          show_pct: true
+          name: "DEV Server"
+          logo_url: "/local/docker_logos/vscode.png"
+        template:
+          - card_computer
+        entity: "switch.remote_development_lxc"
+      - type: 'custom:button-card'
+        styles:
+          card:
+            - box-shadow: none !important;
+        variables:
+          cpu_sensor: "sensor.lxc_gitea_104_cpu_used"
+          ram_sensor: "sensor.lxc_gitea_104_memory_used_percentage"
+          disk_sensor: "sensor.lxc_gitea_104_disk_used_percentage"
+          restart_entity: "button.lxc_gitea_104_reboot"
+          show_pct: true
+          name: "Gitea"
+          logo_url: "/local/docker_logos/Gitea.png"
+        template:
+          - card_computer
+        name: Gitea
+        entity: "switch.gitea_lxc"
+  - type: "horizontal-stack"
+    cards:
+      - type: 'custom:button-card'
+        styles:
+          card:
+            - box-shadow: none !important;
+        variables:
+          cpu_sensor: "sensor.lxc_coolify_113_cpu_used"
+          ram_sensor: "sensor.lxc_coolify_113_memory_used_percentage"
+          disk_sensor: "sensor.lxc_coolify_113_disk_used_percentage"
+          restart_entity: "button.lxc_coolify_113_reboot"
+          show_pct: true
+          name: "Coolify"
+          logo_url: "/local/docker_logos/coolify.png"
+        template:
+          - card_computer
+        name: Coolify
+        entity: "switch.coolify_lxc"
+      - type: 'custom:button-card'
+        styles:
+          card:
+            - box-shadow: none !important;
+        variables:
+          cpu_sensor: "sensor.lxc_work_dockers_115_cpu_used"
+          ram_sensor: "sensor.lxc_work_dockers_115_memory_used_percentage"
+          disk_sensor: "sensor.lxc_work_dockers_115_disk_used_percentage"
+          restart_entity: "button.lxc_work_dockers_115_reboot"
+          show_pct: true
+          name: "Work Dockers"
+          logo_url: "/local/docker_logos/docker.webp"
+        template:
+          - card_computer
+        entity: "switch.work_dockers_lxc"

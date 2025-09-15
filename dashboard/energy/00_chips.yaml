@@ -1,0 +1,39 @@
+type: horizontal-stack
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+  - type: "custom:button-card"
+    template: chip_mdi_icon_state
+    label: |
+      [[[ 
+        const state = Math.round(states['sensor.energy_consumed'].state);
+        return state + ' kWh' 
+      ]]]
+    variables:
+      ulm_chip_mdi_icon_state_entity: sensor.energy_consumed
+      ulm_chip_mdi_icon_state_icon: mdi:lightning-bolt
+      ulm_chip_mdi_icon_state_icon_color: "#FEDE00"
+  - type: "custom:button-card"
+    template: chip_mdi_icon_state
+    label: |
+      [[[ 
+        const state = Math.round(states['sensor.power_consumed'].state * 100) / 100;
+        return state + ' kW'
+      ]]]
+    variables:
+      ulm_chip_mdi_icon_state_entity: sensor.power_consumed
+      ulm_chip_mdi_icon_state_icon: mdi:home-lightning-bolt
+      ulm_chip_mdi_icon_state_icon_color: "#e57dff"
+  - type: "custom:button-card"
+    template: chip_mdi_icon_state
+    label: |
+      [[[ 
+        const state = Math.round(states['sensor.energy_cost'].state * 100) / 100;
+        return '€' + state
+      ]]]
+    variables:
+      ulm_chip_mdi_icon_state_entity: sensor.energy_cost
+      ulm_chip_mdi_icon_state_icon: mdi:cash
+      ulm_chip_mdi_icon_state_icon_color: "#85BB65"

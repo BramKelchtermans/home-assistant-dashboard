@@ -1,0 +1,13 @@
+type: horizontal-stack
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+  - type: 'custom:button-card'
+    template: chip_icon_label
+    label: "[[[ return states['sensor.amount_lights_on'].state ]]]"
+    icon: 'mdi:lightbulb'
+    styles:
+      icon:
+        - color: "#FFBF00"

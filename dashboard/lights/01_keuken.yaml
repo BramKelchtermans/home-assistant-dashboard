@@ -1,0 +1,56 @@
+type: vertical-stack
+cards:
+  - type: "custom:button-card"
+    template: card_title
+    name: Keuken
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_light_slider
+        entity: light.tafellamp_1
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+      - type: "custom:button-card"
+        template: card_light_slider
+        entity: light.tafellamp_2
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_light_slider
+        entity: light.tafellamp_3
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+      - type: "custom:button-card"
+        template: card_light_slider
+        entity: light.tafellamp_4
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+  - type: horizontal-stack
+    cards: 
+      - type: "custom:button-card"
+        template: card_light_slider
+        entity: light.lamp_keuken
+        variables:
+          ulm_card_light_icon: mdi:ceiling-light
+          ulm_card_light_enable_slider: false
+          ulm_card_light_enable_color: false
+          ulm_card_light_force_background_color: true
+      - type: "custom:button-card"
+        template: card_light_slider
+        entity: light.lamp_aanrecht
+        icon: mdi:countertop
+        variables:
+          ulm_card_light_icon: mdi:countertop
+          ulm_card_light_enable_slider: false
+          ulm_card_light_enable_color: false
+          ulm_card_light_force_background_color: true

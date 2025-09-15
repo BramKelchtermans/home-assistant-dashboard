@@ -1,0 +1,11 @@
+type: 'custom:button-card'
+template: card_vertical_button
+entity: input_boolean.guest_mode
+name: Guest mode
+icon: mdi:account-group
+styles:
+  card:
+    - background: "color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent)"
+show_last_changed: true
+variables:
+  ulm_card_vertical_button_color: pink

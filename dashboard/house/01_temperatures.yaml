@@ -1,0 +1,72 @@
+type: vertical-stack
+cards:
+  - type: custom:bubble-card
+    card_type: separator
+    name: Temperatuur
+    icon: mdi:thermometer
+    styles: |
+      ha-card {
+        margin-top: 1rem;
+      }
+      ha-card .separator-container div:last-child {
+        background-color: var(--primary-text-color);
+      }
+  - type: horizontal-stack
+    cards: 
+      - type: "custom:button-card"
+        template: card_weather
+        entity: weather.forecast_home
+        variables:
+          ulm_card_weather_name: " "
+          ulm_card_weather_primary_info:
+            - wind_speed
+            - precipitation_probability
+          ulm_card_weather_backdrop:
+            fade: true
+  - type: custom:mushroom-climate-card
+    entity: climate.downstairs
+    name: Thermostaat
+    show_temperature_control: true
+    style: |-
+      ha-card:first-of-type {
+        background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+      }
+    hvac_modes:
+      - heat
+      - auto
+      - 'off'
+  - type: horizontal-stack
+    cards: 
+      - type: "custom:button-card"
+        template: card_input_number_bram
+        style: |-
+          ha-card:first-of-type {
+            background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+          }
+          ha-card #item1 div#container {
+            background: transparent;
+          }
+        entity: input_number.slider_heater_idle
+        variables:
+          ulm_card_input_number_name: "Minimum temp."
+      - type: "custom:button-card"
+        template: card_input_number_bram
+        styles:
+          card:
+            - background: "color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent)"
+        entity: input_number.slider_heater_active
+        icon: "fas:temperature-high"
+        variables:
+          ulm_card_input_number_name: "Gewenste temp."
+  - type: 'custom:button-card'
+    template: card_vertical_button
+    entity: input_boolean.force_heating
+    name: Force heating
+    style: |-
+      ha-card:first-of-type {
+        background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+      }
+    icon: mdi:radiator
+    show_last_changed: true
+    variables:
+      ulm_card_vertical_button_color: red

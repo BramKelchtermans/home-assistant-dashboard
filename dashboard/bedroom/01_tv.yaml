@@ -1,0 +1,33 @@
+type: vertical-stack
+cards:
+  - type: custom:bubble-card
+    card_type: separator
+    name: Televisie
+    icon: mdi:television
+    styles: |
+      ha-card {
+        margin-top: 1rem;
+      }
+      ha-card .separator-container div:last-child {
+        background-color: var(--primary-text-color);
+      }
+  - type: "custom:button-card"
+    template: card_media_player
+    entity: media_player.shield_boven
+    name: Shield Boven
+    styles:
+      card:
+        - color: "var(--primary-text-color)"
+        # - background: "color-mix(in srgb, var(--ha-card-background,var(--card-background-color)) 60%, transparent)"
+    variables:
+      ulm_card_media_player_enable_art: true
+      ulm_card_media_player_enable_controls: true
+      ulm_card_media_player_enable_volume_slider: true
+      ulm_card_media_player_more_info: true
+  # - type: "custom:button-card"
+  #   template: card_vertical_button
+  #   entity: switch.outlet_tv_boven
+  #   name: TV Outlet
+  #   icon: mdi:power-socket-de
+  #   variables:
+  #     ulm_card_vertical_button_color: pink

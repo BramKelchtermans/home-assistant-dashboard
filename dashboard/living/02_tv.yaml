@@ -1,0 +1,54 @@
+# # type: custom:collapsable-cards
+# # title_card:
+# #   type: "custom:button-card"
+# #   template: card_title
+# #   name: Televisie
+# # defaultOpen: true
+# type: vertical-stack
+# cards:
+#   - type: custom:bubble-card
+#     card_type: separator
+#     name: Televisie
+#     icon: mdi:television
+#     styles: |
+#       ha-card {
+#         margin-top: 1rem;
+#       }
+#       ha-card .separator-container div:last-child {
+#         background-color: var(--primary-text-color);
+#       }
+#   - type: "custom:button-card"
+#     template: card_vertical_button
+#     entity: switch.living_tv_switch
+#     name: Power
+#     icon: fas:power-off
+#     show_last_changed: false
+#     styles:
+#       card:
+#         - background: "color-mix(in srgb, var(--ha-card-background,var(--card-background-color)) 80%, transparent) !important"
+#     variables:
+#       ulm_card_vertical_button_color: red
+#   - type: "custom:button-card"
+#     template: card_media_player
+#     entity: media_player.nvidia_shield
+#     name: Livingroom Nvidia Shield
+#     styles:
+#       card:
+#         - color: "var(--primary-text-color)"
+#         # - background: "color-mix(in srgb, var(--ha-card-background,var(--card-background-color)) 60%, transparent)"
+#     variables:
+#       ulm_card_media_player_enable_art: true
+#       ulm_card_media_player_enable_controls: true
+#       ulm_card_media_player_enable_volume_slider: true
+#       ulm_card_media_player_more_info: true
+#   - type: custom:universal-remote-card
+#     remote_id: remote.samsung_smart_tv
+#     media_player_id: media_player.samsung_tv_living_qe50q64dauxxn
+#     rows:
+#       - - power
+#       - - back
+#         - home
+#         - tv
+#         - netflix
+#       - - touchpad
+#       - - slider

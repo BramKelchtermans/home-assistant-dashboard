@@ -1,0 +1,47 @@
+type: horizontal-stack
+cards:
+  - type: vertical-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_title
+        name: Staanlamp
+      - type: "custom:button-card"
+        template: card_light_slider
+        entity: light.staanlamp_boven
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+      - type: "custom:button-card"
+        template: card_light_slider
+        entity: light.staanlamp_midden
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true      
+      - type: "custom:button-card"
+        template: card_light_slider
+        entity: light.staanlamp_onder
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true      
+  - type: vertical-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_title
+        name: Living
+      - type: "custom:button-card"
+        template: card_light_slider
+        entity: light.zetellamp
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true      
+      - type: "custom:button-card"
+        template: card_light_slider
+        entity: light.lamp_rek
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true    

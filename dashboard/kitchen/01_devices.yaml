@@ -1,0 +1,53 @@
+type: vertical-stack
+cards:
+  - type: custom:bubble-card
+    card_type: separator
+    name: Lampen
+    icon: mdi:lamp
+    styles: |
+      ha-card {
+        margin-top: 1rem;
+      }
+      ha-card .separator-container div:last-child {
+        background-color: var(--primary-text-color);
+      }
+  - type: custom:mushroom-light-card
+    entity: light.lamp_tafel
+    icon: mdi:table-furniture
+    layout: horizontal
+    show_brightness_control: true
+    show_color_temp_control: true
+    style: |-
+      ha-card:first-of-type {
+        background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+      }
+  - type: custom:mushroom-light-card
+    entity: switch.aquarium
+    icon: mdi:fishbowl-outline
+    layout: horizontal
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_light_slider
+        entity: light.lamp_keuken
+        style: |-
+          ha-card:first-of-type {
+            background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+          }
+        variables:
+          ulm_card_light_icon: mdi:ceiling-light
+          ulm_card_light_enable_slider: false
+          ulm_card_light_enable_color: false
+          ulm_card_light_force_background_color: true
+      - type: "custom:button-card"
+        template: card_light_slider
+        entity: light.lamp_aanrecht
+        style: |-
+          ha-card:first-of-type {
+            background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+          }
+        variables:
+          ulm_card_light_icon: mdi:countertop
+          ulm_card_light_enable_slider: false
+          ulm_card_light_enable_color: false
+          ulm_card_light_force_background_color: true

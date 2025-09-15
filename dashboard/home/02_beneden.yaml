@@ -1,0 +1,100 @@
+type: custom:expander-card
+title-card-clickable: true
+padding: 0.5em
+expanded: true
+card_mod:
+  style: |
+    ha-card {
+      border-radius: 20px !important;
+    }
+child-margin-top: 0.5em
+title-card:
+  type: "custom:button-card"
+  template: card_title
+  name: "Beneden"
+  card_mod:
+    style: |
+      ha-card {
+        margin-left: 0.5em !important;
+        margin-top: auto !important;
+      }
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        variables:
+          icon_color: "255,255,255"
+          show_pct: true
+          background_url: "/local/living.jpg"
+          # sensor1_id: "binary_sensor.bewegingssensor_living_occupancy"
+          # icon1_on: "mdi:motion-sensor"
+          sensor2_id: "binary_sensor.deursensor_raam_contact"
+          icon2_on: "mdi:window-open"
+          icon2_off: "mdi:window-closed"
+        template:
+          - card_bram_room
+        name: Living
+        triggers_update:
+          - lights.moodlights
+          # - binary_sensor.bewegingssensor_living_occupancy
+          - binary_sensor.deursensor_raam_contact
+          - climate.downstairs
+        entity: "light.moodlights"
+        tap_action:
+          action: navigate
+          navigation_path: 'living'
+
+      - type: 'custom:button-card'
+        template:
+          - card_bram_room
+        name: Keuken
+        entity: light.keukenlampen
+        icon: mdi:countertop
+        triggers_update:
+          - light.keukenlampen
+          - binary_sensor.bewegingssensor_keuken_occupancy
+        variables:
+          sensor1_id: "binary_sensor.bewegingssensor_keuken_occupancy"
+          icon1_on: "mdi:motion-sensor"
+          icon_color: "255,255,255"
+          climate_id: "climate.downstairs"
+          background_url: "/local/keuken.jpg"
+        tap_action:
+          action: navigate
+          navigation_path: 'kitchen'
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        template:
+          - card_bram_room
+        name: Berging
+        entity: light.lamp_berging
+        icon: fas:box
+        triggers_update:
+          - light.lamp_berging
+          - binary_sensor.bewegingssensor_berging_occupancy
+        variables:
+          sensor1_id: "binary_sensor.bewegingssensor_berging_occupancy"
+          icon1_on: "mdi:motion-sensor"
+          icon_color: "255,255,255"
+          background_url: "https://cdn-0.declutteringyourlife.com/wp-content/uploads/2018/02/small-house-storage-hacks-52-1024x1024.jpg?ezimgfmt=rs:1024x1024/rscb5/ng:webp/ngcb5"
+        tap_action:
+          action: navigate
+          navigation_path: 'berging'
+      - type: 'custom:button-card'
+        template:
+          - card_bram_room
+        name: Hal
+        entity: light.lamp_hal
+        icon: fas:box
+        triggers_update:
+          - light.lamp_hal
+          - binary_sensor.bewegingssensor_hal_occupancy
+        variables:
+          sensor1_id: "binary_sensor.bewegingssensor_hal_occupancy"
+          icon1_on: "mdi:motion-sensor"
+          icon_color: "255,255,255"
+          background_url: "https://www.thespruce.com/thmb/Sgisw5BM37u5ljgkanWVVzESKVg=/3400x3400/smart/filters:no_upscale()/hallway-with-mirror-on-wall-in-home-482184153-587572cb3df78c17b6de66d9.jpg"
+        tap_action:
+          action: navigate
+          navigation_path: 'hallway'

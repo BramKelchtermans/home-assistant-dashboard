@@ -1,0 +1,71 @@
+type: custom:collapsable-cards
+title: Server
+cards:
+  - type: custom:button-card
+    template: card_bram_entities
+    label: ""
+    style: |-
+      ha-card {
+        background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+      }
+    entity: sensor.qnap_bram_status
+    name: QNAP NAS
+    entity_picture: /local/qnap_logo.png
+    show_entity_picture: true
+    variables:
+      entity_1:
+        icon: "fas:microchip"
+        color: '48, 117, 0'
+        state: "[[[ return states['sensor.qnap_bram_cpu_usage'].state ]]]"
+        unit: "%"
+      entity_2:
+        icon: "mdi:thermometer"
+        state: "[[[ return states['sensor.qnap_bram_system_temperature'].state ]]]"
+        unit: "°C"
+        color: "255, 179, 0"
+      entity_3:
+        icon: "fas:memory"
+        state: '[[[ return Math.round(states["sensor.qnap_bram_memory_usage"].state) ]]]'
+        unit: "%"
+        color: "255, 0, 76"
+      # entity_4:
+      #   icon: "fas:hdd"
+      #   state: '[[[ return Math.round(states["sensor.qnap_bram_volume_used_multimedia"].state) ]]]'
+      #   unit: "%"
+      #   color: "0, 163, 150"
+      logo_width: "62px"
+  - type: custom:button-card
+    template: card_bram_entities
+    label: ""
+    entity: sensor.bramflix
+    name: Plex
+    entity_picture: /local/plex_logo.png
+    style: |-
+      ha-card {
+        background: color-mix(in srgb, var(--ha-card-background, var(--card-background-color)) 80%, transparent);
+      }
+    show_entity_picture: true
+    variables:
+      entity_1:
+        icon: "mdi:eye"
+        color: '48, 117, 0'
+        state: "[[[ return states['sensor.bramflix'].state ]]]"
+        unit: ""
+      entity_2:
+        icon: "mdi:movie"
+        state: "[[[ return states['sensor.bramflix_library_films'].state ]]]"
+        unit: ""
+        color: "255, 179, 0"
+      entity_3:
+        icon: "fas:tv"
+        state: '[[[ return states["sensor.bramflix_library_tv_series"].attributes.shows ]]]'
+        unit: ""
+        color: "255, 0, 76"
+      entity_4:
+        icon: "fas:laugh-squint"
+        state: '[[[ return states["sensor.bramflix_library_zaalshows"].state ]]]'
+        unit: ""
+        color: "0, 163, 150"
+      ulm_card_vertical_button_color: "red"
+      logo_width: "62px"
+

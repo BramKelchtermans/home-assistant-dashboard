@@ -1,0 +1,50 @@
+type: custom:expander-card
+title-card-clickable: true
+padding: 0.5em
+expanded: true
+child-margin-top: 0.5em
+card_mod:
+  style: |
+    ha-card {
+      border-radius: 20px !important;
+    }
+title-card:
+  type: "custom:button-card"
+  template: card_title
+  name: Virtual Machines
+  card_mod:
+    style: |
+      ha-card {
+        margin-left: 0.5em !important;
+        margin-top: auto !important;
+      }
+cards:
+  - type: 'custom:button-card'
+    styles:
+      card:
+        - box-shadow: none !important;
+    variables:
+      cpu_sensor: "sensor.qemu_drm_downloader_203_cpu_used"
+      ram_sensor: "sensor.qemu_drm_downloader_203_memory_used_percentage"
+      disk_sensor: "sensor.qemu_drm_downloader_203_disk_used_percentage"
+      restart_entity: "button.qemu_drm_downloader_203_reboot"
+      show_pct: true
+      name: "DRM Downloader"
+      logo_url: "/local/docker_logos/ubuntu.svg"
+    template:
+      - card_computer
+    entity: "switch.drm_downloader_vm"
+  # - type: 'custom:button-card'
+  #   styles:
+  #     card:
+  #       - box-shadow: none !important;
+  #   variables:
+  #     cpu_sensor: "sensor.qnap_bram_cpu_usage"
+  #     ram_sensor: "sensor.qnap_bram_memory_usage"
+  #     disk_sensor: "sensor.qnap_bram_volume_used_media"
+  #     show_pct: true
+  #     name: "Qnap"
+  #     logo_url: "/local/docker_logos/qnap.png"
+  #   template:
+  #     - card_computer
+  #   entity: "switch.drm_downloader_vm"
